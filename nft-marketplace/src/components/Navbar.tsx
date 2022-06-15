@@ -10,8 +10,9 @@ import {
   } from '@mui/material';
   import CurrencyBitcoinIcon from '@mui/icons-material/CurrencyBitcoin';
   import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-  import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+  import PersonIcon from '@mui/icons-material/Person';
   import { useState } from 'react'
+import { CartWidget } from './CartWidget';
   
   export const MuiNavbar = () => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -83,9 +84,22 @@ import {
             <MenuItem onClick={handleClose}>Sports</MenuItem>
             <MenuItem onClick={handleClose}>Trading cards</MenuItem>
           </Menu>
-          <IconButton size='large' edge='end' color='inherit' aria-label='logo' className='navbar__cart'>
-            <ShoppingCartIcon />
+          <IconButton 
+            size='large' 
+            edge='start' 
+            color='inherit'
+            disableRipple
+            sx={{
+              bgcolor: 'transparent',
+              borderRadius: 0,
+              "&.MuiButtonBase-root:hover": {
+                bgcolor: "#f2f2f2"
+              }
+            }}
+          >
+            <PersonIcon />
           </IconButton>
+          <CartWidget />
         </Toolbar>
       </AppBar>
     )
