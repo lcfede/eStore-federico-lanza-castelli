@@ -11,7 +11,7 @@ export const CartWidget = () => {
           edge='end' 
           color='inherit' 
           aria-label='logo' 
-          className='cartwidget__icon'
+          className='cart-widget__icon'
           disableRipple
           sx={{
             bgcolor: 'transparent',
@@ -22,7 +22,7 @@ export const CartWidget = () => {
             }
           }}
         >
-            <span className="cartwidget__counter">{counter}</span>
+            <span className="cart-widget__counter">{counter}</span>
             <ShoppingCartIcon />
         </IconButton>
     </>
