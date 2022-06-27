@@ -1,5 +1,6 @@
 import React from 'react';
 import { ItemCount } from './ItemCount';
+import { ItemList } from './ItemList';
 
 export const ItemListContainer = ({greeting}) => {
 
@@ -9,6 +10,7 @@ export const ItemListContainer = ({greeting}) => {
   return (
     <>
       <h1 className='item-list-container__title'>{greeting}</h1>
+      <ItemList />
       <ItemCount onAdd={handleAdd} stock={10} />
     </>
   )
