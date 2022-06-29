@@ -19,8 +19,7 @@ export const ItemCount = ({onAdd, stock}) => {
     }
 
   return (
-    <div className='itemcount__cointainer'>
-        
+    <div className='itemcount__cointainer'>  
         <ButtonGroup size="medium" aria-label="small outlined button group">
             <Button 
                 onClick={() => addProd(-1)}
@@ -34,10 +33,10 @@ export const ItemCount = ({onAdd, stock}) => {
         </ButtonGroup>
         <hr/>
         <Button 
-            size="medium" 
-            variant="outlined"
+            variant="contained"
+            color="primary"
             onClick={handleAdd}
-        >Añadir</Button>
+        >Add to cart</Button>
     </div>
   )
 }

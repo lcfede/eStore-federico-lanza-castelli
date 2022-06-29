@@ -9,13 +9,12 @@ import ShareIcon from '@mui/icons-material/Share';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { makeStyles } from '@material-ui/core/styles';
+import { Link, useNavigate } from 'react-router-dom';
+import { ItemCount } from './ItemCount';
 
 const useStyles = makeStyles(theme => ({
-    root: {
-        maxWidth: 345
-    },
-    media: {
-        height: 200,
+    content: {
+        textAlign: "center"
     }
 }))
 
@@ -24,44 +23,33 @@ export const Item = ({product}) => {
     const {id, title, price, category, stock = 10, image} = product;
     const classes = useStyles();
 
+    let navigate = useNavigate();
+
+    const handleNavigate = () => {
+        navigate(`/item/${product.id}`);
+    }
+
     return (
-        <Grid item xs={12} sm={6} md={3} key={id} className={classes.grid}>
-            <Card sx={{ maxWidth: 345 }}>
-                <CardActionArea>
-                    <CardMedia
-                        component="img"
-                        image={image}
-                        alt={title}
-                        className={classes.media}
-                    />
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                            {title}
-                        </Typography>
-                        <Typography variant="h6" color="text.secondary">
-                            ${price}
-                        </Typography>
-                        <Typography paragraph>
-                            Stock disponible: {stock}
-                        </Typography>
-                    </CardContent>
-                </CardActionArea>
+        <Grid item xs={12} sm={6} md={3} key={id}>
+            <Card sx={{ maxWidth: 345 }} className="animate__animated animate__fadeIn">
+                <Link to={`/item/${product.id}`}>
+                    <CardActionArea>
+                        <img src={image} height={350} width={300} />
+                        <CardContent>
+                            <Typography gutterBottom variant="h5" component="div" className={classes.content}>
+                                {title}
+                            </Typography>
+                            <Typography variant="h6" color="text.secondary" className={classes.content}>
+                                ${price}
+                            </Typography>
+                            <Typography paragraph className={classes.content}>
+                                Stock disponible: {stock}
+                            </Typography>
+                        </CardContent>
+                    </CardActionArea>
+                </Link>
                 <CardActions>
-                    <Tooltip title="Add to cart">
-                        <IconButton aria-label="share">
-                            <AddShoppingCartIcon />
-                        </IconButton>
-                    </Tooltip>
-                    <Tooltip title="View details">
-                        <IconButton aria-label="share">
-                            <VisibilityIcon />
-                        </IconButton>
-                    </Tooltip>
-                    <Tooltip title="Share to friends">
-                        <IconButton aria-label="share">
-                            <ShareIcon />
-                        </IconButton>
-                    </Tooltip>
+                    <ItemCount stock={10} key={product.id} onAdd={() => alert('product added')}/>
                 </CardActions>
             </Card>
         </Grid>

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
     AppBar,
     Toolbar,
@@ -8,11 +9,11 @@ import {
     Menu,
     MenuItem
   } from '@mui/material';
-  import CurrencyBitcoinIcon from '@mui/icons-material/CurrencyBitcoin';
-  import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-  import PersonIcon from '@mui/icons-material/Person';
-  import { useState } from 'react'
+import CurrencyBitcoinIcon from '@mui/icons-material/CurrencyBitcoin';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import PersonIcon from '@mui/icons-material/Person';
 import { CartWidget } from './CartWidget';
+import { Link } from 'react-router-dom';
   
   export const MuiNavbar = () => {
     const [anchorEl, setAnchorEl] = useState(null)
@@ -38,13 +39,17 @@ import { CartWidget } from './CartWidget';
                 bgcolor: "transparent"
               }
             }}>
-            <CurrencyBitcoinIcon fontSize="large" color='warning'/>
+            <Link to="/">
+              <CurrencyBitcoinIcon fontSize="large" color='warning'/>
+            </Link>
           </IconButton>
           <Typography variant='h6' component='div' sx={{ flexGrow: 1 }} className="navbar__typography" align='left'>
             <span className="navbar__title">NFT Marketplace</span>
           </Typography>
           <Stack direction='row' spacing={2} className="navbar__items">
-            <Button color='inherit'>Marketplace</Button>
+            <Link to="/">
+              <Button color='inherit'>Marketplace</Button>
+            </Link>
             <Button
               color='inherit'
               id='resources-button'
@@ -55,9 +60,15 @@ import { CartWidget } from './CartWidget';
               onClick={handleClick}>
               Explore
             </Button>
-            <Button color='inherit'>About</Button>
-            <Button color='inherit' variant="outlined">Login</Button>
-            <Button color='info' variant="contained">Sign up</Button>
+            {/* <Link to="/about">
+              <Button color='inherit'>About</Button>
+            </Link> */}
+            <Link to="/login">
+              <Button color='inherit' variant="outlined">Login</Button>
+            </Link>
+            <Link to="/signup">
+              <Button color='info' variant="contained">Sign up</Button>
+            </Link>
           </Stack>
           <Menu
             id='resources-menu'
@@ -75,14 +86,21 @@ import { CartWidget } from './CartWidget';
             MenuListProps={{
               'aria-labelledby': 'resources-button'
             }}>
-            <MenuItem onClick={handleClose}>All NFTs</MenuItem>
-            <MenuItem onClick={handleClose}>Art</MenuItem>
-            <MenuItem onClick={handleClose}>Collectibles</MenuItem>
-            <MenuItem onClick={handleClose}>Domain names</MenuItem>
-            <MenuItem onClick={handleClose}>Music</MenuItem>
-            <MenuItem onClick={handleClose}>Photography</MenuItem>
-            <MenuItem onClick={handleClose}>Sports</MenuItem>
-            <MenuItem onClick={handleClose}>Trading cards</MenuItem>
+            <MenuItem onClick={handleClose}>
+              <Link to="/">All NFTs</Link>
+            </MenuItem>
+            <MenuItem onClick={handleClose}>
+              <Link to="/category/jewelery">Art</Link>
+            </MenuItem>
+            <MenuItem onClick={handleClose}>
+              <Link to="/category/electronics">Collectibles</Link>
+            </MenuItem>
+            <MenuItem onClick={handleClose}>
+              <Link to="/category/men's clothing">Photography</Link>
+            </MenuItem>
+            <MenuItem onClick={handleClose}>
+            <Link to="/category/women's clothing">Sports</Link>  
+            </MenuItem>
           </Menu>
           <IconButton 
             size='large' 

@@ -1,5 +1,4 @@
-import React from 'react'
-import { useFetch } from '../hooks/useFetch';
+import React from 'react';
 import { Item } from './Item';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid } from '@mui/material';
@@ -11,10 +10,8 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-export const ItemList = () => {
+export const ItemList = ({ data, loading, error }) => {
 
-    const url = 'https://fakestoreapi.com/products';
-    const { data, loading, error } = useFetch(url);
     const classes = useStyles();
 
     return (
@@ -29,15 +26,15 @@ export const ItemList = () => {
                         : <div className={classes.root}>
                             <Grid
                                 container
-                                spacing={5}
+                                spacing={2}
                                 direction="row"
-                                justify="flex-start"
-                                alignItems="flex-start"
+                                justify="center"
+                                alignItems="center"
                             >
                                 {
                                     data.map((prod) => {
                                         return(
-                                            <Item product={prod} />
+                                            <Item product={prod} key={prod.id} />
                                         )
                                     })
                                 }
