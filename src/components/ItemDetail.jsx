@@ -27,7 +27,10 @@ const ItemDetail = ({ data, loading, error }) => {
                   <Typography variant="subtitle1" mb={2}>{data?.description}</Typography>
                   <Typography variant="h5" mb={3}>${data.price}</Typography>
                 </Box>
-                <Button variant="contained" color="primary" onClick={() => navigate(-1)}>Volver</Button>
+                <Box>
+                  <Button variant="contained" color="primary" style={{marginRight: 15}}>Add to cart</Button>
+                  <Button variant="contained" color="inherit" onClick={() => navigate(-1)}>Volver</Button>
+                </Box>
                 {/* <ItemCount stock={10} key={data.id} onAdd={() => alert('product added')}/> */}
               </Grid>
             </Grid>
