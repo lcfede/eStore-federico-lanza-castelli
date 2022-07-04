@@ -48,9 +48,22 @@ import { Link } from 'react-router-dom';
           </Typography>
           <Stack direction='row' spacing={2} className="navbar__items">
             <Link to="/">
-              <Button color='inherit'>Marketplace</Button>
+              <Button color='inherit'>Home</Button>
             </Link>
-            <Button
+            <Link to="/category/jewelery">
+              <Button color='inherit'>Art</Button>
+            </Link>
+            <Link to="/category/electronics">
+              <Button color='inherit'>Collectibles</Button>
+            </Link>
+            <Link to="/category/men's clothing">
+              <Button color='inherit'>Photography</Button>
+            </Link>
+            <Link to="/category/women's clothing">
+              <Button color='inherit'>Sports</Button>
+            </Link>
+
+            {/* <Button
               color='inherit'
               id='resources-button'
               aria-controls={open ? 'resources-menu' : undefined}
@@ -59,7 +72,7 @@ import { Link } from 'react-router-dom';
               endIcon={<KeyboardArrowDownIcon />}
               onClick={handleClick}>
               Explore
-            </Button>
+            </Button> */}
             {/* <Link to="/about">
               <Button color='inherit'>About</Button>
             </Link> */}
@@ -69,8 +82,9 @@ import { Link } from 'react-router-dom';
             <Link to="/signup">
               <Button color='info' variant="contained">Sign up</Button>
             </Link>
+            
           </Stack>
-          <Menu
+          {/* <Menu
             id='resources-menu'
             anchorEl={anchorEl}
             open={open}
@@ -101,7 +115,7 @@ import { Link } from 'react-router-dom';
             <MenuItem onClick={handleClose}>
             <Link to="/category/women's clothing">Sports</Link>  
             </MenuItem>
-          </Menu>
+          </Menu> */}
           <IconButton 
             size='large' 
             edge='start' 

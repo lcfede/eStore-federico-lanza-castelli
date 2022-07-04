@@ -33,7 +33,7 @@ export const Item = ({product}) => {
         <Grid item xs={12} sm={6} md={3} key={id}>
             <Card sx={{ maxWidth: 345 }} className="animate__animated animate__fadeIn">
                 <Link to={`/item/${product.id}`}>
-                    <CardActionArea>
+                    <CardActionArea style={{display: 'inline-block'}}>
                         <img src={image} height={350} width={300} />
                         <CardContent>
                             <Typography gutterBottom variant="h5" component="div" className={classes.content}>
