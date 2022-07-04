@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Divider, Grid, Typography, Button, Box } from '@mui/material';
 import { ItemCount } from './ItemCount';
 import { useNavigate } from 'react-router-dom';
 
 const ItemDetail = ({ data, loading, error }) => {
 
+  const [qty, setQty] = useState(0);
   const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    alert(`Se han agregado ${qty} items`);
+    navigate('/cart');
+  }
 
   return (
     <>
@@ -27,10 +33,20 @@ const ItemDetail = ({ data, loading, error }) => {
                   <Typography variant="subtitle1" mb={2}>{data?.description}</Typography>
                   <Typography variant="h5" mb={3}>${data.price}</Typography>
                 </Box>
-                <Box>
+                {
+                  !qty 
+                    ? <ItemCount stock={10} key={data?.id} onAdd={setQty}/>
+                    : <Button 
+                        variant="contained" 
+                        color="primary" 
+                        style={{marginRight: 15}}
+                        onClick={handleNavigate}
+                      >Terminar compra</Button>
+                }
+                {/* <Box>
                   <Button variant="contained" color="primary" style={{marginRight: 15}}>Add to cart</Button>
                   <Button variant="contained" color="inherit" onClick={() => navigate(-1)}>Volver</Button>
-                </Box>
+                </Box> */}
                 {/* <ItemCount stock={10} key={data.id} onAdd={() => alert('product added')}/> */}
               </Grid>
             </Grid>

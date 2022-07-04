@@ -48,9 +48,9 @@ export const Item = ({product}) => {
                         </CardContent>
                     </CardActionArea>
                 </Link>
-                <CardActions>
+                {/* <CardActions>
                     <ItemCount stock={10} key={product.id} onAdd={() => alert('product added')}/>
-                </CardActions>
+                </CardActions> */}
             </Card>
         </Grid>
     )

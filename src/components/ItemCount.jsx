@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 
-export const ItemCount = ({onAdd, stock}) => {
+export const ItemCount = ({onAdd: setQty, stock}) => {
 
     const [count, setCount] = useState(1);
     const [currentStock, setCurrentStock] = useState(stock);
@@ -13,9 +13,9 @@ export const ItemCount = ({onAdd, stock}) => {
     }
 
     const handleAdd = () => {
-        onAdd();
         setCurrentStock(currentStock - count);
         setCount(1);
+        setQty(count);
     }
 
   return (
