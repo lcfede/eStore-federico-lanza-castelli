@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { IconButton } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { Shop } from './context/ShopContext';
 
 export const CartWidget = () => {
-  let counter = 1;
+  const {cart} = useContext(Shop);
+
   return (
     <>
         <IconButton 
@@ -22,7 +24,7 @@ export const CartWidget = () => {
             }
           }}
         >
-            <span className="cart-widget__counter">{counter}</span>
+            <span className="cart-widget__counter">{cart? cart.length : 0}</span>
             <ShoppingCartIcon />
         </IconButton>
     </>

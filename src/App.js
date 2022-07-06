@@ -10,19 +10,22 @@ import {
 import ItemDetailContainer from './components/ItemDetailContainer';
 import NotFound from './components/NotFound';
 import Cart from './components/Cart';
+import ShopProvider from './components/context/ShopContext';
 
 function App() {
   return (
-    <BrowserRouter>
-      <MuiNavbar/>
-      <Routes>
-        <Route path="/" element={<ItemListContainer />}/>
-        <Route path="/category/:id" element={<ItemListContainer />}/>
-        <Route path="/item/:id" element={<ItemDetailContainer />}/>
-        <Route path="/cart" element={<Cart />}/>
-        <Route path="*" element={<NotFound />}/>
-      </Routes>
-    </BrowserRouter>
+    <ShopProvider>
+      <BrowserRouter>
+        <MuiNavbar/>
+        <Routes>
+          <Route path="/" element={<ItemListContainer />}/>
+          <Route path="/category/:id" element={<ItemListContainer />}/>
+          <Route path="/item/:id" element={<ItemDetailContainer />}/>
+          <Route path="/cart" element={<Cart />}/>
+          <Route path="*" element={<NotFound />}/>
+        </Routes>
+      </BrowserRouter>
+    </ShopProvider>
   );
 }
 

@@ -10,20 +10,20 @@ import {
     MenuItem
   } from '@mui/material';
 import CurrencyBitcoinIcon from '@mui/icons-material/CurrencyBitcoin';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+// import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import PersonIcon from '@mui/icons-material/Person';
 import { CartWidget } from './CartWidget';
 import { Link } from 'react-router-dom';
   
   export const MuiNavbar = () => {
-    const [anchorEl, setAnchorEl] = useState(null)
-    const open = Boolean(anchorEl)
-    const handleClick = (event) => {
-      setAnchorEl(event.currentTarget)
-    }
-    const handleClose = () => {
-      setAnchorEl(null)
-    }
+    // const [anchorEl, setAnchorEl] = useState(null)
+    // const open = Boolean(anchorEl)
+    // const handleClick = (event) => {
+    //   setAnchorEl(event.currentTarget)
+    // }
+    // const handleClose = () => {
+    //   setAnchorEl(null)
+    // }
     return (
       <AppBar position='static' color='transparent'>
         <Toolbar>

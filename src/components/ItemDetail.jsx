@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Divider, Grid, Typography, Button, Box } from '@mui/material';
 import { ItemCount } from './ItemCount';
 import { useNavigate } from 'react-router-dom';
+import { Shop } from './context/ShopContext';
 
 const ItemDetail = ({ data, loading, error }) => {
 
   const [qty, setQty] = useState(0);
   const navigate = useNavigate();
+  const {addItem} = useContext(Shop);
 
   const handleNavigate = () => {
     alert(`Se han agregado ${qty} items`);
+    addItem(data, qty);
     navigate('/cart');
   }
 
