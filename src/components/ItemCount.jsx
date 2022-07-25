@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
+import { Shop } from './context/ShopContext';
 
-export const ItemCount = ({onAdd: setQty, stock}) => {
+export const ItemCount = ({onAdd: setQty, stock, product}) => {
 
     const [count, setCount] = useState(1);
     const [currentStock, setCurrentStock] = useState(stock);
+    const {addItem} = useContext(Shop);
 
     const addProd = (num) => {
         if (count <= currentStock)
@@ -16,6 +18,7 @@ export const ItemCount = ({onAdd: setQty, stock}) => {
         setCurrentStock(currentStock - count);
         setCount(1);
         setQty(count);
+        addItem(product, count);
     }
 
   return (
@@ -31,7 +34,6 @@ export const ItemCount = ({onAdd: setQty, stock}) => {
                 disabled={count >= currentStock ? true : false}
             >+</Button>
         </ButtonGroup>
-        <hr/>
         <Button 
             variant="contained"
             color="primary"

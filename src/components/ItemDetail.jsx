@@ -1,20 +1,12 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Divider, Grid, Typography, Button, Box } from '@mui/material';
 import { ItemCount } from './ItemCount';
 import { useNavigate } from 'react-router-dom';
-import { Shop } from './context/ShopContext';
 
 const ItemDetail = ({ data, loading, error }) => {
 
   const [qty, setQty] = useState(0);
   const navigate = useNavigate();
-  const {addItem} = useContext(Shop);
-
-  const handleNavigate = () => {
-    alert(`Se han agregado ${qty} items`);
-    addItem(data, qty);
-    navigate('/cart');
-  }
 
   return (
     <>
@@ -24,12 +16,12 @@ const ItemDetail = ({ data, loading, error }) => {
         : <Grid container spacing={1} style={{maxWidth: 1100, margin: "0 auto", marginTop: 60}}>
             <Grid item sm={6}>
               <Grid container>
-                <img src={data?.image} height={450} width={500} className='item-detail__img'/>
+                <img src={data?.images[0]} height={450} width={500} className='item-detail__img' alt=""/>
               </Grid>
             </Grid>
             <Grid item sm={6}>
               <Grid container direction="column" style={{height: '100%'}}>
-                <Typography variant="subtitle1">{data?.category}</Typography>
+                <Typography variant="subtitle1">{data?.category.name}</Typography>
                 <Divider />
                 <Box mt={4}>
                   <Typography variant="h4" mb={2}>{data.title}</Typography>
@@ -38,19 +30,22 @@ const ItemDetail = ({ data, loading, error }) => {
                 </Box>
                 {
                   !qty 
-                    ? <ItemCount stock={10} key={data?.id} onAdd={setQty}/>
-                    : <Button 
-                        variant="contained" 
-                        color="primary" 
-                        style={{marginRight: 15}}
-                        onClick={handleNavigate}
-                      >Terminar compra</Button>
+                    ? <Box>
+                        <ItemCount stock={10} key={data?.id} onAdd={setQty} product={data}/>
+                      </Box>
+                    : <Box>
+                        <Button 
+                          variant="contained" 
+                          color="inherit" 
+                          onClick={() => navigate(-1)} 
+                          style={{marginTop: 10, marginBottom: 10, marginRight: 10, width: 250}}>Continue shopping</Button>
+                        <Button 
+                          variant="contained" 
+                          color="primary" 
+                          style={{marginTop: 10, marginBottom: 10, marginLeft: 10, width: 150}}
+                          onClick={() => navigate('/cart')}>Checkout</Button>
+                      </Box> 
                 }
-                {/* <Box>
-                  <Button variant="contained" color="primary" style={{marginRight: 15}}>Add to cart</Button>
-                  <Button variant="contained" color="inherit" onClick={() => navigate(-1)}>Volver</Button>
-                </Box> */}
-                {/* <ItemCount stock={10} key={data.id} onAdd={() => alert('product added')}/> */}
               </Grid>
             </Grid>
           </Grid>

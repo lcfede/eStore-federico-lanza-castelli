@@ -1,9 +1,10 @@
 .itemcount__cointainer {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: left;
     align-items: center;
     margin-top: auto;
+    gap: 10px;
 }
   
 .itemcount__counter {

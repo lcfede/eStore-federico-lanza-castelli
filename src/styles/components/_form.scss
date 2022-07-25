@@ -1,0 +1,13 @@
+.form-error {
+    color: red;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.form-half {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px;
+}

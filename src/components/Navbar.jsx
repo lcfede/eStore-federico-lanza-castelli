@@ -1,29 +1,10 @@
-import { useState } from 'react';
-import {
-    AppBar,
-    Toolbar,
-    IconButton,
-    Typography,
-    Button,
-    Stack,
-    Menu,
-    MenuItem
-  } from '@mui/material';
-import CurrencyBitcoinIcon from '@mui/icons-material/CurrencyBitcoin';
-// import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { AppBar, Toolbar, IconButton, Typography, Button, Stack, } from '@mui/material';
+import StorefrontIcon from '@mui/icons-material/Storefront';
 import PersonIcon from '@mui/icons-material/Person';
 import { CartWidget } from './CartWidget';
 import { Link } from 'react-router-dom';
   
   export const MuiNavbar = () => {
-    // const [anchorEl, setAnchorEl] = useState(null)
-    // const open = Boolean(anchorEl)
-    // const handleClick = (event) => {
-    //   setAnchorEl(event.currentTarget)
-    // }
-    // const handleClose = () => {
-    //   setAnchorEl(null)
-    // }
     return (
       <AppBar position='static' color='transparent'>
         <Toolbar>
@@ -40,82 +21,35 @@ import { Link } from 'react-router-dom';
               }
             }}>
             <Link to="/">
-              <CurrencyBitcoinIcon fontSize="large" color='warning'/>
+              <StorefrontIcon fontSize="large" color='warning'/>
             </Link>
           </IconButton>
           <Typography variant='h6' component='div' sx={{ flexGrow: 1 }} className="navbar__typography" align='left'>
-            <span className="navbar__title">NFT Marketplace</span>
+            <span className="navbar__title">E-store</span>
           </Typography>
           <Stack direction='row' spacing={2} className="navbar__items">
             <Link to="/">
-              <Button color='inherit'>Home</Button>
+              <Button color='inherit'>All</Button>
             </Link>
-            <Link to="/category/jewelery">
-              <Button color='inherit'>Art</Button>
+            <Link to="/category/1">
+              <Button color='inherit'>Clothes</Button>
             </Link>
-            <Link to="/category/electronics">
-              <Button color='inherit'>Collectibles</Button>
+            <Link to="/category/4">
+              <Button color='inherit'>Shoes</Button>
             </Link>
-            <Link to="/category/men's clothing">
-              <Button color='inherit'>Photography</Button>
+            <Link to="/category/2">
+              <Button color='inherit'>Electronics</Button>
             </Link>
-            <Link to="/category/women's clothing">
-              <Button color='inherit'>Sports</Button>
+            <Link to="/category/3">
+              <Button color='inherit'>Furniture</Button>
             </Link>
-
-            {/* <Button
-              color='inherit'
-              id='resources-button'
-              aria-controls={open ? 'resources-menu' : undefined}
-              aria-haspopup='true'
-              aria-expanded={open ? 'true' : undefined}
-              endIcon={<KeyboardArrowDownIcon />}
-              onClick={handleClick}>
-              Explore
-            </Button> */}
-            {/* <Link to="/about">
-              <Button color='inherit'>About</Button>
-            </Link> */}
             <Link to="/login">
               <Button color='inherit' variant="outlined">Login</Button>
             </Link>
             <Link to="/signup">
               <Button color='info' variant="contained">Sign up</Button>
             </Link>
-            
           </Stack>
-          {/* <Menu
-            id='resources-menu'
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'right'
-            }}
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'right'
-            }}
-            MenuListProps={{
-              'aria-labelledby': 'resources-button'
-            }}>
-            <MenuItem onClick={handleClose}>
-              <Link to="/">All NFTs</Link>
-            </MenuItem>
-            <MenuItem onClick={handleClose}>
-              <Link to="/category/jewelery">Art</Link>
-            </MenuItem>
-            <MenuItem onClick={handleClose}>
-              <Link to="/category/electronics">Collectibles</Link>
-            </MenuItem>
-            <MenuItem onClick={handleClose}>
-              <Link to="/category/men's clothing">Photography</Link>
-            </MenuItem>
-            <MenuItem onClick={handleClose}>
-            <Link to="/category/women's clothing">Sports</Link>  
-            </MenuItem>
-          </Menu> */}
           <IconButton 
             size='large' 
             edge='start' 
@@ -128,10 +62,9 @@ import { Link } from 'react-router-dom';
                 bgcolor: "#f2f2f2"
               }
             }}
-          >
-            <PersonIcon />
+          ><PersonIcon />
           </IconButton>
-          <CartWidget />
+          <Link to="/cart"><CartWidget/></Link>
         </Toolbar>
       </AppBar>
     )

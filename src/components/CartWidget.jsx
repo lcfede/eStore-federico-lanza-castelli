@@ -4,7 +4,8 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Shop } from './context/ShopContext';
 
 export const CartWidget = () => {
-  const {cart} = useContext(Shop);
+
+  const {totalItems} = useContext(Shop);
 
   return (
     <>
@@ -24,7 +25,7 @@ export const CartWidget = () => {
             }
           }}
         >
-            <span className="cart-widget__counter">{cart? cart.length : 0}</span>
+            <span className="cart-widget__counter">{totalItems()}</span>
             <ShoppingCartIcon />
         </IconButton>
     </>
