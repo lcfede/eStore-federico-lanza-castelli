@@ -10,20 +10,18 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-export const ItemList = ({ data, loading, error }) => {
+export const ItemList = ({data, loading}) => {
 
     const classes = useStyles();
+
+    if (loading) return <p>Loading data...</p>
 
     return (
         <>
             {
-                loading 
-                ? <p>Loading NFT's</p>
-                : <div> 
+                <div> 
                     {
-                        error
-                        ? <p>{error}</p>
-                        : <div className={classes.root}>
+                        <div className={classes.root}>
                             <Grid
                                 container
                                 spacing={2}

@@ -1,24 +1,44 @@
-import React from 'react';
-import { useFetch } from '../hooks/useFetch';
+import React, { useEffect, useState } from 'react';
 import { ItemList } from './ItemList';
 import { useParams } from 'react-router-dom';
+import {getProducts, getProductsByCategory} from './services/productService';
 
 export const ItemListContainer = ({greeting}) => {
 
-  const {id} = useParams();
-  
-  const url = !id 
-              ? 'https://api.escuelajs.co/api/v1/products'
-              : `https://api.escuelajs.co/api/v1/categories/${id}/products`;
-  
-  const { data, loading, error } = useFetch(url);
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(false);
 
-  return (
-    <>
-      <h1 className='item-list-container__title'>
-        {greeting ? greeting : "Discover new collections for next season"}
-      </h1>
-      <ItemList data={data} loading={loading} error={error} />
-    </>
-  )
-}
+    const {category} = useParams();
+
+    useEffect(() => {
+      if (!category) {
+        getProducts(setLoading)
+          .then((data) => {
+            setProducts(data);
+        });
+      } else {
+        getProductsByCategory(category, setLoading)
+          .then((data) => {
+            setProducts(data);
+        })
+      }
+    }, [category]);
+    
+
+    if (loading) return <p>Loading data...</p>
+
+    return (
+      <>
+        {
+          (products && products.length > 0) &&
+          <div>
+            <h1 className='item-list-container__title'>
+              {greeting ? greeting : "Discover new collections for next season"}
+            </h1>
+            <ItemList data={products} loading={loading} />
+          </div>
+        }
+        
+      </>
+    )
+  }

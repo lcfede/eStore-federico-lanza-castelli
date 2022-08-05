@@ -3,25 +3,25 @@ import { Divider, Grid, Typography, Button, Box } from '@mui/material';
 import { ItemCount } from './ItemCount';
 import { useNavigate } from 'react-router-dom';
 
-const ItemDetail = ({ data, loading, error }) => {
+const ItemDetail = ({ data, loading }) => {
 
   const [qty, setQty] = useState(0);
   const navigate = useNavigate();
 
+  if (loading) return <p>Loading NFT</p>
+
   return (
     <>
       {
-        loading 
-        ? <p>Loading NFT</p>
-        : <Grid container spacing={1} style={{maxWidth: 1100, margin: "0 auto", marginTop: 60}}>
+        <Grid container spacing={1} style={{maxWidth: 1100, margin: "0 auto", marginTop: 60}}>
             <Grid item sm={6}>
               <Grid container>
-                <img src={data?.images[0]} height={450} width={500} className='item-detail__img' alt=""/>
+                <img src={data?.image} height={450} width={500} className='item-detail__img' alt=""/>
               </Grid>
             </Grid>
             <Grid item sm={6}>
               <Grid container direction="column" style={{height: '100%'}}>
-                <Typography variant="subtitle1">{data?.category.name}</Typography>
+                <Typography variant="subtitle1">{data?.category}</Typography>
                 <Divider />
                 <Box mt={4}>
                   <Typography variant="h4" mb={2}>{data.title}</Typography>
@@ -31,7 +31,7 @@ const ItemDetail = ({ data, loading, error }) => {
                 {
                   !qty 
                     ? <Box>
-                        <ItemCount stock={10} key={data?.id} onAdd={setQty} product={data}/>
+                        <ItemCount stock={data?.stock} key={data?.id} onAdd={setQty} product={data}/>
                       </Box>
                     : <Box>
                         <Button 

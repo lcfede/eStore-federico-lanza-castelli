@@ -29,7 +29,7 @@ export const CartItem = ({ item, addItem, subtractItem }) => {
           </Button>
         </div>
       </div>
-      <img src={item.images[0]} alt={item.title} />
+      <img src={item.image} alt={item.title} />
     </div>
   );
 };

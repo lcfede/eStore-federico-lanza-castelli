@@ -23,6 +23,10 @@
         object-fit: cover;
         margin-left: 40px;
     }
+
+    &:hover {
+        background-color: #fcfcfc;
+    }
 }
 
 .cart__main-title {
@@ -58,7 +62,7 @@
 }
 
 .cart__items {
-    height: 450px;
+    height: 650px;
     overflow-y: auto;
     white-space: nowrap;
     margin-top: 5px;

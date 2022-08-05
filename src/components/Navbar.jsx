@@ -31,16 +31,19 @@ import { Link } from 'react-router-dom';
             <Link to="/">
               <Button color='inherit'>All</Button>
             </Link>
-            <Link to="/category/1">
+            <Link to="/nikes">
+              <Button color='inherit'>Nikes</Button>
+            </Link>
+            <Link to="/category/Clothes">
               <Button color='inherit'>Clothes</Button>
             </Link>
-            <Link to="/category/4">
+            <Link to="/category/Shoes">
               <Button color='inherit'>Shoes</Button>
             </Link>
-            <Link to="/category/2">
+            <Link to="/category/Electronics">
               <Button color='inherit'>Electronics</Button>
             </Link>
-            <Link to="/category/3">
+            <Link to="/category/Furniture">
               <Button color='inherit'>Furniture</Button>
             </Link>
             <Link to="/login">

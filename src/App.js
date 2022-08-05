@@ -12,6 +12,7 @@ import Cart from './components/Cart';
 import ShopProvider from './components/context/ShopContext';
 import MainContainer from './layout/MainContainer';
 import PurchaseSuccess from './components/PurchaseSuccess';
+import Nikes from './components/Nikes';
 
 function App() {
   return (
@@ -21,7 +22,8 @@ function App() {
         <MainContainer>
           <Routes>
             <Route path="/" element={<ItemListContainer />}/>
-            <Route path="/category/:id" element={<ItemListContainer />}/>
+            <Route path="/nikes" element={<Nikes />}/>
+            <Route path="/category/:category" element={<ItemListContainer />}/>
             <Route path="/item/:id" element={<ItemDetailContainer />}/>
             <Route path="/cart" element={<Cart />}/>
             <Route path="/success" element={<PurchaseSuccess />}/>

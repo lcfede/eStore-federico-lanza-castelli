@@ -37,15 +37,16 @@ const Cart = () => {
         ...cart
       ]
     };
-    //call Api
+    //call Api and redirect to /success/id
     clearItems();
     navigate("/success");
   }
 
+  if (!cart.length) return <h3 style={{margin: 30}}>Cart is empty...</h3>;
+
   return (
     <>
       {
-        cart.length ?
           <>
             <h1 className='cart__main-title'>Cart</h1>
             <div className='cart__container'>
@@ -107,7 +108,15 @@ const Cart = () => {
                           name: Yup.string().required("Name required"),
                           email: Yup.string().required("Email required").email("Invalid email format"),
                           phone: Yup.string().required("Phone required"),
-                          address: Yup.string().required("Address required")
+                          address: Yup.string().required("Address required"),
+                          confirmEmail: Yup.string().required("Confirm email required").email("Invalid email format")
+                            .when("email", {
+                              is: val => (val && val.length > 0 ? true : false),
+                              then: Yup.string().oneOf(
+                                [Yup.ref("email")],
+                                "Both email need to be the same"
+                              )
+                            })
                         })
                     }
                   >
@@ -128,19 +137,6 @@ const Cart = () => {
                                 helperText={formik.touched.name && formik.errors.name} />
                               <TextField 
                                 fullWidth
-                                name="email" 
-                                label="Email" 
-                                variant="outlined"
-                                value={formik.values.email}
-                                onChange={formik.handleChange}
-                                error={formik.touched.email && Boolean(formik.errors.email)}
-                                helperText={formik.touched.email && formik.errors.email} /> 
-                            </div>
-                          </section>
-                          <section className='form-section'>
-                            <div className='form-half'>
-                              <TextField 
-                                fullWidth
                                 name="phone" 
                                 label="Phone" 
                                 variant="outlined"
@@ -148,6 +144,32 @@ const Cart = () => {
                                 onChange={formik.handleChange}
                                 error={formik.touched.phone && Boolean(formik.errors.phone)}
                                 helperText={formik.touched.phone && formik.errors.phone} />
+                            </div>
+                          </section>
+                          <section className='form-section'>
+                            <div className='form-half'>
+                              <TextField 
+                                fullWidth
+                                name="email" 
+                                label="Email" 
+                                variant="outlined"
+                                value={formik.values.email}
+                                onChange={formik.handleChange}
+                                error={formik.touched.email && Boolean(formik.errors.email)}
+                                helperText={formik.touched.email && formik.errors.email} /> 
+                              <TextField 
+                                fullWidth
+                                name="confirmEmail" 
+                                label="Confirm email" 
+                                variant="outlined"
+                                value={formik.values.confirmEmail}
+                                onChange={formik.handleChange}
+                                error={formik.touched.confirmEmail && Boolean(formik.errors.confirmEmail)}
+                                helperText={formik.touched.confirmEmail && formik.errors.confirmEmail}/> 
+                            </div>
+                          </section>
+                          <section className='form-section'>
+                            <div className='form-half'>
                               <TextField 
                                 fullWidth
                                 name="address" 
@@ -195,8 +217,6 @@ const Cart = () => {
               </div>
             </div>
           </>
-
-        : <h3 style={{margin: 30}}>Cart is empty...</h3>
       }
     </>
   )

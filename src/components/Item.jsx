@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
 
 export const Item = ({product}) => {
 
-    const {id, title, price, stock = 10, images} = product;
+    const {id, title, price, stock = 10, image} = product;
     const classes = useStyles();
 
     return (
@@ -22,7 +22,7 @@ export const Item = ({product}) => {
             <Card sx={{ maxWidth: 345 }} className="animate__animated animate__fadeIn">
                 <Link to={`/item/${product.id}`}>
                     <CardActionArea style={{display: 'inline-block'}}>
-                        <img src={images[0]} height={350} alt="" />
+                        <img src={image} height={350} alt="" />
                         <CardContent>
                             <Typography gutterBottom variant="h5" component="div" className={classes.content}>
                                 {title}
