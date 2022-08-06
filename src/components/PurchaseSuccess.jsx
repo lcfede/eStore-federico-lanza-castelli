@@ -1,3 +1,4 @@
+import { Divider } from '@material-ui/core';
 import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
@@ -6,10 +7,6 @@ const PurchaseSuccess = () => {
   const {id} = useParams();
 
   const navigate = useNavigate();
-
-  setTimeout(() => {
-    navigate('/');
-  }, 4500);
 
   if(!id) navigate("/");
 
@@ -20,7 +17,9 @@ const PurchaseSuccess = () => {
           <i className="checkmark">✓</i>
         </div>
         <h1>Purchase success</h1> 
-        <p>We received your purchase request. We'll be in touch shortly <br/> Order number: {id}</p>
+        <Divider style={{marginTop: '10px', marginBottom: '10px'}}/>
+        <p style={{marginBottom: '15px'}}>We received your purchase request. We'll be in touch shortly.</p>
+        <p>Order number: <b>{id}</b></p>
       </div>
     </div>
   )

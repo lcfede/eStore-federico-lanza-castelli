@@ -7,6 +7,7 @@ import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { Button } from '@material-ui/core';
 import { useNavigate } from "react-router-dom";
+import {saveOrder} from './services/orderService';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -14,33 +15,43 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const Cart = () => {
   const {cart, addItem, clearItems, removeItem, subtractItem, totalAmount} = useContext(Shop);
-  const [open, setOpen] = useState(false);
+  const [modal, setModal] = useState({open: false, isError: false, title: '', message: ''});
   const navigate = useNavigate();
 
   const handleClose = () => {
-    setOpen(false);
+    setModal({open: false, title: '', isError: false, message: ''})
   };
 
   const customSubmit = (formik) => {
-    setOpen(false);
-    formik.setFieldValue("name", "");
-    formik.setFieldValue("email", "");
-    formik.setFieldValue("phone", "");
-    formik.setFieldValue("address", "");
+    setModal({open: false, title: '', isError: false, message: ''})
 
     const payload = {
       name: formik.values.name,
       phone: formik.values.phone,
       email: formik.values.email,
       address: formik.values.address,
-      items: [
+      date: new Date(),
+      products: [
         ...cart
       ]
     };
-    //call Api and redirect to /success/id
-    clearItems();
-    navigate("/success");
+
+    try {
+      saveOrder(payload)
+        .then((id) => {
+          clearItems();
+          navigate(`/success/${id}`)
+      })
+    } catch (error) {
+      setModal({
+        open: true, 
+        title: 'Error',
+        isError: true,
+        message: 'An error ocurred while purchasing. Please try again.'
+      })
+    }
   }
+
 
   if (!cart.length) return <h3 style={{margin: 30}}>Cart is empty...</h3>;
 
@@ -96,11 +107,17 @@ const Cart = () => {
                       name: "",
                       email: "",
                       phone: "",
-                      address: ""
+                      address: "",
+                      confirmEmail: ""
                     }}
 
                     onSubmit={async (values, { setSubmitting }) => {
-                      setOpen(true);
+                      setModal({
+                        open: true, 
+                        title: 'Confirm purchase',
+                        isError: false,
+                        message: 'Are you sure you want to continue? Payment will be made immediately.'
+                      });
                     }}
 
                     validationSchema={
@@ -128,6 +145,7 @@ const Cart = () => {
                             <div className='form-half'>
                               <TextField 
                                 fullWidth
+                                autoComplete="new-password"
                                 name="name" 
                                 label="Full name" 
                                 variant="outlined"
@@ -137,6 +155,7 @@ const Cart = () => {
                                 helperText={formik.touched.name && formik.errors.name} />
                               <TextField 
                                 fullWidth
+                                autoComplete="new-password"
                                 name="phone" 
                                 label="Phone" 
                                 variant="outlined"
@@ -150,6 +169,7 @@ const Cart = () => {
                             <div className='form-half'>
                               <TextField 
                                 fullWidth
+                                autoComplete="new-password"
                                 name="email" 
                                 label="Email" 
                                 variant="outlined"
@@ -159,6 +179,7 @@ const Cart = () => {
                                 helperText={formik.touched.email && formik.errors.email} /> 
                               <TextField 
                                 fullWidth
+                                autoComplete="new-password"
                                 name="confirmEmail" 
                                 label="Confirm email" 
                                 variant="outlined"
@@ -172,6 +193,7 @@ const Cart = () => {
                             <div className='form-half'>
                               <TextField 
                                 fullWidth
+                                autoComplete="new-password"
                                 name="address" 
                                 label="Full address" 
                                 variant="outlined"
@@ -189,22 +211,30 @@ const Cart = () => {
 
                           <div>
                             <Dialog
-                              open={open}
+                              open={modal.open}
                               TransitionComponent={Transition}
                               keepMounted
                               onClose={handleClose}
                               aria-describedby="alert-dialog-slide-description"
                             >
-                              <DialogTitle>{"Confirm purchase"}</DialogTitle>
+                              <DialogTitle>{modal.title}</DialogTitle>
                               <DialogContent>
                                 <DialogContentText id="alert-dialog-slide-description">
-                                  Are you sure you want to continue? Payment will be made immediately.
+                                  {modal.message}
                                 </DialogContentText>
                               </DialogContent>
-                              <DialogActions>
-                                <Button onClick={handleClose}>Disagree</Button>
-                                <Button onClick={() => customSubmit(formik)}>Agree</Button>
-                              </DialogActions>
+                              {
+                                !modal.isError 
+                                  ? 
+                                    <DialogActions>
+                                      <Button onClick={handleClose}>Disagree</Button>
+                                      <Button onClick={() => customSubmit(formik)}>Agree</Button>
+                                    </DialogActions>
+                                  :
+                                    <DialogActions>
+                                      <Button onClick={handleClose}>Close</Button>
+                                    </DialogActions>
+                              }
                             </Dialog>
                           </div>
                         </Form>

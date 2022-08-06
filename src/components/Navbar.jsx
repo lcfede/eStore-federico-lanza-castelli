@@ -32,7 +32,7 @@ import { Link } from 'react-router-dom';
               <Button color='inherit'>All</Button>
             </Link>
             <Link to="/nikes">
-              <Button color='inherit'>Nikes</Button>
+              <Button color='inherit'>Nike 360°</Button>
             </Link>
             <Link to="/category/Clothes">
               <Button color='inherit'>Clothes</Button>
