@@ -11,7 +11,7 @@ const PurchaseSuccess = () => {
   if(!id) navigate("/");
 
   return (
-    <div className='container'>
+    <div className='container animate__animated animate__fadeIn'>
       <div className="card">
         <div className="card-checkmark">
           <i className="checkmark">✓</i>
