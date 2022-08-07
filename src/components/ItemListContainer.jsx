@@ -24,7 +24,7 @@ export const ItemListContainer = ({greeting}) => {
             if (data && data.length > 0)
               setProducts(data);
             else
-            navigate('/NotFound')
+              navigate('/NotFound');
         })
       }
     }, [category]);

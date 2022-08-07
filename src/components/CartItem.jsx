@@ -7,7 +7,7 @@ export const CartItem = ({ item, addItem, subtractItem }) => {
       <div>
         <h3>{item.title}</h3>
         <div className="information">
-          <p>Price: ${item.price}</p>
+          <p>Price: ${item.price} ~ Stock: {item.stock}</p>
           <p>Total: ${(item.qty * item.price).toFixed(2)}</p>
         </div>
         <div className="buttons">
@@ -23,6 +23,7 @@ export const CartItem = ({ item, addItem, subtractItem }) => {
           <Button
             size="small"
             disableElevation
+            disabled={item.qty >= item.stock}
             variant="outlined"
             onClick={() => addItem(item, 1)}
           >

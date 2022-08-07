@@ -21,6 +21,7 @@ const ShopProvider = ({children}) => {
     }, [cart]);
     
     const addItem = (product, qty) => {
+        if (product.qty >= product.stock) return;
         const repeated = isInCart(product.id);
         if (repeated) {
             repeated.qty += qty;

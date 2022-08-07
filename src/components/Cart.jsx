@@ -111,7 +111,7 @@ const Cart = () => {
                   return(
                       <CartItem
                         key={item.id} 
-                        item={item} 
+                        item={item}
                         addItem={addItem} 
                         subtractItem={subtractItem} 
                         removeFromCart={removeItem}
