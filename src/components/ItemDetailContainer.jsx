@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Slide } from '@mui/material';
+import { Box, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, LinearProgress, Slide } from '@mui/material';
 import { Button } from '@material-ui/core';
 import ItemDetail from './ItemDetail';
 import { useNavigate, useParams } from 'react-router-dom';
-import {getProductById} from './services/productService';
+import {getProductById} from '../services/productService';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -34,7 +34,12 @@ const ItemDetailContainer = () => {
             })
     }, [id])
     
-    if(loading) return <p>Loading data...</p>
+    if (loading) 
+      return (
+        <Box sx={{ width: '100%' }}>
+          <LinearProgress />
+        </Box>
+      )
     if(open) 
         return (
             <div>

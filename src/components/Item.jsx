@@ -18,13 +18,13 @@ export const Item = ({product}) => {
     const classes = useStyles();
 
     return (
-        <Grid item xs={12} sm={6} md={3} key={id}>
-            <Card sx={{ maxWidth: 345 }} className="animate__animated animate__fadeIn">
+        <Grid item xs={12} sm={6} md={3} key={id} justifyItems='center'>
+            <Card className="animate__animated animate__fadeIn">
                 <Link to={`/item/${product.id}`}>
                     <CardActionArea style={{display: 'inline-block'}}>
                         <img src={image} height={350} alt="" />
                         <CardContent>
-                            <Typography gutterBottom variant="h5" component="div" className={classes.content}>
+                            <Typography gutterBottom variant="h5" component="div" className={classes.content} sx={{fontSize: '1.35rem'}}>
                                 {title}
                             </Typography>
                             <Typography variant="h6" color="text.secondary" className={classes.content}>

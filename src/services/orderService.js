@@ -1,5 +1,5 @@
 import {collection, addDoc} from 'firebase/firestore';
-import { db } from '../../firebase/config';
+import { db } from '../firebase/config';
 
 
 export const saveOrder = async (order) => {

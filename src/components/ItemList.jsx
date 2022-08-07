@@ -1,12 +1,12 @@
 import React from 'react';
 import { Item } from './Item';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid } from '@mui/material';
+import { Box, Grid, LinearProgress } from '@mui/material';
 
 const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,
-        padding: theme.spacing(5)
+        padding: theme.spacing(10)
     }
 }))
 
@@ -14,7 +14,12 @@ export const ItemList = ({data, loading}) => {
 
     const classes = useStyles();
 
-    if (loading) return <p>Loading data...</p>
+    if (loading) 
+      return (
+        <Box sx={{ width: '100%' }}>
+          <LinearProgress />
+        </Box>
+      )
 
     return (
         <>
@@ -24,7 +29,7 @@ export const ItemList = ({data, loading}) => {
                         <div className={classes.root}>
                             <Grid
                                 container
-                                spacing={2}
+                                spacing={3}
                                 direction="row"
                                 justify="center"
                                 alignItems="center"

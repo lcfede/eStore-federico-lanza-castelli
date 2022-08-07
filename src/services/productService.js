@@ -1,6 +1,6 @@
 
 import {doc, getDoc, collection, query, getDocs, limit, where} from 'firebase/firestore';
-import { db } from '../../firebase/config';
+import { db } from '../firebase/config';
 
 
 export const getProductById = async (id, setLoading) => {
@@ -23,7 +23,7 @@ export const getProductById = async (id, setLoading) => {
 export const getProducts = async (setLoading) => {
     try {
       setLoading(true);
-      const q = query(collection(db, "products"), limit(30));
+      const q = query(collection(db, "products"), limit(32));
       const docs = await getDocs(q);
       const prods = [];
       docs.forEach((doc) => {

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { ItemList } from './ItemList';
 import { useParams } from 'react-router-dom';
-import {getProducts, getProductsByCategory} from './services/productService';
+import {getProducts, getProductsByCategory} from '../services/productService';
+import { Box, LinearProgress } from '@mui/material';
 
 export const ItemListContainer = ({greeting}) => {
 
@@ -25,7 +26,12 @@ export const ItemListContainer = ({greeting}) => {
     }, [category]);
     
 
-    if (loading) return <p>Loading data...</p>
+    if (loading) 
+      return (
+        <Box sx={{ width: '100%' }}>
+          <LinearProgress />
+        </Box>
+      )
 
     return (
       <>

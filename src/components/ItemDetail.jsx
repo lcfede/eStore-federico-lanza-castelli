@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Divider, Grid, Typography, Button, Box } from '@mui/material';
+import { Divider, Grid, Typography, Button, Box, LinearProgress } from '@mui/material';
 import { ItemCount } from './ItemCount';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,7 +8,12 @@ const ItemDetail = ({ data, loading }) => {
   const [qty, setQty] = useState(0);
   const navigate = useNavigate();
 
-  if (loading) return <p>Loading NFT</p>
+  if (loading) 
+      return (
+        <Box sx={{ width: '100%' }}>
+          <LinearProgress />
+        </Box>
+      )
 
   return (
     <>

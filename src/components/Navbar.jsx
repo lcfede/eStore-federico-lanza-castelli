@@ -1,10 +1,28 @@
-import { AppBar, Toolbar, IconButton, Typography, Button, Stack, } from '@mui/material';
+import { AppBar, Toolbar, IconButton, Typography, Button, Stack, Tooltip, } from '@mui/material';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import PersonIcon from '@mui/icons-material/Person';
 import { CartWidget } from './CartWidget';
 import { Link } from 'react-router-dom';
+import { getCategoriesAll } from '../services/categoryService';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { useContext } from 'react';
+import { Auth } from '../context/AuthContext';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { logout } from '../services/authService';
   
   export const MuiNavbar = () => {
+
+    const [categories, setCategories] = useState([]);
+    const {user, name} = useContext(Auth);
+
+    useEffect(() => {
+      getCategoriesAll()
+        .then((items) => {
+          setCategories(items);
+      });
+    }, []);
+    
     return (
       <AppBar position='static' color='transparent'>
         <Toolbar>
@@ -34,40 +52,72 @@ import { Link } from 'react-router-dom';
             <Link to="/nikes">
               <Button color='inherit'>Nike 360°</Button>
             </Link>
-            <Link to="/category/Clothes">
-              <Button color='inherit'>Clothes</Button>
-            </Link>
-            <Link to="/category/Shoes">
-              <Button color='inherit'>Shoes</Button>
-            </Link>
-            <Link to="/category/Electronics">
-              <Button color='inherit'>Electronics</Button>
-            </Link>
-            <Link to="/category/Furniture">
-              <Button color='inherit'>Furniture</Button>
-            </Link>
-            <Link to="/login">
-              <Button color='inherit' variant="outlined">Login</Button>
-            </Link>
-            <Link to="/signup">
-              <Button color='info' variant="contained">Sign up</Button>
-            </Link>
+            {
+              categories.map((category) => {
+                return (
+                  <Link to={`/category/${category.key}`} key={category.id}>
+                    <Button color='inherit'>{category.key}</Button>
+                  </Link>
+                )
+              })
+            }
+            {
+              !user && 
+                <>
+                  <Link to="/login">
+                    <Button color='inherit' variant="outlined">Login</Button>
+                  </Link>
+                  <Link to="/register">
+                    <Button color='info' variant="contained">Sign up</Button>
+                  </Link>
+                </>
+            }
           </Stack>
-          <IconButton 
-            size='large' 
-            edge='start' 
-            color='inherit'
-            disableRipple
-            sx={{
-              bgcolor: 'transparent',
-              borderRadius: 0,
-              "&.MuiButtonBase-root:hover": {
-                bgcolor: "#f2f2f2"
-              }
-            }}
-          ><PersonIcon />
-          </IconButton>
-          <Link to="/cart"><CartWidget/></Link>
+          {
+            user &&
+            <>
+              <Tooltip title="Profile">
+                <IconButton 
+                  size='large' 
+                  edge='start' 
+                  color='inherit'
+                  disableRipple
+                  sx={{
+                    bgcolor: 'transparent',
+                    borderRadius: 0,
+                    "&.MuiButtonBase-root:hover": {
+                      bgcolor: "#f2f2f2"
+                    },
+                    fontSize: '13px',
+                  }}
+                  onClick={() => console.log("TODO: Dev user profile page")}
+                ><span style={{marginRight: '5px'}}>{name}</span><PersonIcon />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Logout">
+                <IconButton 
+                  size='large' 
+                  edge='start' 
+                  color='inherit'
+                  disableRipple
+                  sx={{
+                    bgcolor: 'transparent',
+                    borderRadius: 0,
+                    "&.MuiButtonBase-root:hover": {
+                      bgcolor: "#f2f2f2"
+                    }
+                  }}
+                  onClick={() => logout()}
+                ><LogoutIcon />
+                </IconButton>
+              </Tooltip>
+            </>
+          }
+          <Tooltip title="View cart">
+            <Link to="/cart">
+              <CartWidget/>
+            </Link>
+          </Tooltip>
         </Toolbar>
       </AppBar>
     )

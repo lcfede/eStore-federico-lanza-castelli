@@ -40,7 +40,7 @@ const ShopProvider = ({children}) => {
     const totalItems = () => {
         return cart.reduce(function(a, b){
             return a + b['qty'];
-        }, 0);    
+        }, "");    
     }
 
     const totalAmount = () => {

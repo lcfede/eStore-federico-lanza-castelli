@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
-import { Shop } from './context/ShopContext';
+import { Shop } from '../context/ShopContext';
 
 export const ItemCount = ({onAdd: setQty, stock, product}) => {
 
