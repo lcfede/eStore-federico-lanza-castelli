@@ -1,7 +1,7 @@
 # E-Store
 ## _Developed with React 18_
 
-![test](https://icon-library.com/images/react-icon/react-icon-11.jpg)
+![test](https://github.com/lcfede/eStore-federico-lanza-castelli/blob/main/public/imgs/ReactJS.png)
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
