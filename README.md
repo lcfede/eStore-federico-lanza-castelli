@@ -1,36 +1,55 @@
-# NFT Marketplace
+# E-Store
+## _Developed with React 18_
+##
+![test](https://icon-library.com/images/react-icon/react-icon-11.jpg)
+##
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
-Se crea un AppBar con las opciones "Marketplace", "Explore", "Login", "Sign up", "User profile" y "Cart"
-Actualmente las opciones "Marketplace" y "Explore" permiten navegar de acuerdo a la categoria seleccionada.
+## Features
 
-- Marketplace: acción que redirige al home
+- Home: Main page where you can see all products on the Store
+- NIKE 360°: Page to see the last Nike Sneakers on 360°
+- Categories: Pages to filter products by categories
+- Login / Logout / Register / Reset Password
+- Cart: List of products you want to purchase:
+    - Edit quantity
+    - Remove product
+    - Clear cart
+    - Confirm purchase (fill form to complete purchase)
 
-- Explore: visualiza el listado de categorias (actualmente estamos usando una fakeapi, por lo tanto los productos visualizados 
-y las categorias seleccionadas no coinciden, pero cada click busca y carga una nueva categoria diferente de la fakeapi).
+## Tech
 
-- Login, SignUp, Profile y Cart aun no funcionan.
+Libraries used on this project:
 
-
-
-## Hooks utilizados
-
-- useState
-- useEffect
-- useNavigate
-- useParams
-- useFetch (custom hook para realizar las peticiones a la API)
-
-
-
-### Packages utilizados
-
-- React Router DOM
-- Material UI (MUI)
-- Animate.css
+- [`ReactJS`](https://reactjs.org/) - A JavaScript library for building user interfaces
+- [`React Router v6`](https://reactrouter.com/) - Manage your routing.
+- [`Material UI`](https://mui.com/) - Every component you need is ready for production
+- [`Formik`](https://formik.org/)  - Build forms in React, without the tears
+- [`YUP`](https://www.npmjs.com/package/yup#api)  - Build forms in React, without the tears
+- [`SASS`](https://sass-lang.com/)  - CSS with superpowers
+- [`Animate.css`](https://animate.style/)  - Just-add-water CSS animations.
+- [`Firebase`](https://firebase.google.com/)  - Manage authentication and database API
+- [`Node JS`](https://nodejs.org/)  - Evented I/O for the backend
 
 
 
-#### Comandos utilizados
+## Installation
 
-`npm install` para instalar paquetes nuevas dependencias. Ej (npm install react-router-dom)    
-`npm start` para levantar el proyecto
+E-Store requires [Node.js](https://nodejs.org/) v16+ to run.
+
+Install the dependencies and devDependencies and start the server.
+
+```sh
+npm i
+npm start
+```
+
+
+
+## Version
+
+```sh
+1.0
+```
+
+**Thanks!**
