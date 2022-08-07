@@ -44,6 +44,9 @@ npm i
 npm start
 ```
 
+## Demo
+
+![test](https://github.com/lcfede/eStore-federico-lanza-castelli/blob/main/public/imgs/eStore.gif)
 
 
 ## Version
