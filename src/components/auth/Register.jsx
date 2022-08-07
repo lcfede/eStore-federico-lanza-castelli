@@ -23,7 +23,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [user, loading] = useAuthState(auth);
+  const [user] = useAuthState(auth);
   const [open, setOpen] = useState(false);
   const [error, setError] = useState({open: false, msg: ""});
   const navigate = useNavigate();
@@ -42,8 +42,10 @@ const Register = () => {
   };
 
   useEffect(() => {
-    if (user) navigate('/')
-  }, [user]);
+    if (user) {
+      navigate('/')
+    }
+  });
 
   const handleClose = () => {
     setError({open: false, msg: ""});

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ItemList } from './ItemList';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {getProducts, getProductsByCategory} from '../services/productService';
 import { Box, LinearProgress } from '@mui/material';
 
@@ -8,6 +8,7 @@ export const ItemListContainer = ({greeting}) => {
 
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
     const {category} = useParams();
 
@@ -20,7 +21,10 @@ export const ItemListContainer = ({greeting}) => {
       } else {
         getProductsByCategory(category, setLoading)
           .then((data) => {
-            setProducts(data);
+            if (data && data.length > 0)
+              setProducts(data);
+            else
+            navigate('/NotFound')
         })
       }
     }, [category]);

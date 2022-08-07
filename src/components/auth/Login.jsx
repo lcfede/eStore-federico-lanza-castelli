@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { logInWithEmailAndPassword } from "../../services/authService";
-import { auth } from "../../firebase/config";
 import { 
   Backdrop, 
   Button, 
@@ -32,7 +30,7 @@ const Login = () => {
 
   useEffect(() => {
     if (user) navigate("/");
-  }, [user]);
+  });
 
   const login = (event) => {
     event.preventDefault();

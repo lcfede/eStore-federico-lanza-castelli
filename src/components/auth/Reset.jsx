@@ -23,14 +23,14 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const Reset = () => {
   const [email, setEmail] = useState("");
-  const [user, error] = useAuthState(auth);
+  const [user] = useAuthState(auth);
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState({result: "", msg: ""});
   const navigate = useNavigate();
 
   useEffect(() => {
     if (user) navigate("/");
-  }, [user]);
+  });
 
   const resetPassword = () => {
     setLoading(true);
