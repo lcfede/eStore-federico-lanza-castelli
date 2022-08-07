@@ -25,7 +25,7 @@ Libraries used on this project:
 - [`React Router v6`](https://reactrouter.com/) - Manage your routing.
 - [`Material UI`](https://mui.com/) - Every component you need is ready for production
 - [`Formik`](https://formik.org/)  - Build forms in React, without the tears
-- [`YUP`](https://www.npmjs.com/package/yup#api)  - Build forms in React, without the tears
+- [`YUP`](https://www.npmjs.com/package/yup#api)  - Add validations to your forms
 - [`SASS`](https://sass-lang.com/)  - CSS with superpowers
 - [`Animate.css`](https://animate.style/)  - Just-add-water CSS animations.
 - [`Firebase`](https://firebase.google.com/)  - Manage authentication and database API
