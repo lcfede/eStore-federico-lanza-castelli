@@ -27,7 +27,7 @@ Libraries used on this project:
 - [`Formik`](https://formik.org/)  - Build forms in React, without the tears
 - [`YUP`](https://www.npmjs.com/package/yup#api)  - Add validations to your forms
 - [`SASS`](https://sass-lang.com/)  - CSS with superpowers
-- [`Animate.css`](https://animate.style/)  - Just-add-water CSS animations.
+- [`Animate.css`](https://animate.style/)  - CSS animations.
 - [`Firebase`](https://firebase.google.com/)  - Manage authentication and database API
 - [`Node JS`](https://nodejs.org/)  - Evented I/O for the backend
 
