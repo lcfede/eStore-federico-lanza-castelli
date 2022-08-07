@@ -34,6 +34,7 @@ export const ItemCount = ({onAdd: setQty, stock, product}) => {
             >+</Button>
         </ButtonGroup>
         <Button 
+            disabled={stock <= 0}
             variant="contained"
             color="primary"
             onClick={handleAdd}

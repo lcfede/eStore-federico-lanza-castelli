@@ -32,6 +32,10 @@ const ItemDetail = ({ data, loading }) => {
                   <Typography variant="h4" mb={2}>{data.title}</Typography>
                   <Typography variant="subtitle1" mb={2}>{data?.description}</Typography>
                   <Typography variant="h5" mb={3}>${data.price}</Typography>
+                  {
+                    data?.stock <= 0 &&
+                    <Typography variant="subtitle1" mb={3} sx={{color: 'red'}}>Out of stock</Typography>
+                  }
                 </Box>
                 {
                   !qty 
