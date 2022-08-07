@@ -3,9 +3,23 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { logInWithEmailAndPassword } from "../../services/authService";
 import { auth } from "../../firebase/config";
-import { Backdrop, CircularProgress, TextField } from "@mui/material";
+import { 
+  Backdrop, 
+  Button, 
+  CircularProgress,
+  Dialog, 
+  DialogActions, 
+  DialogContent, 
+  DialogContentText, 
+  DialogTitle, 
+  Slide, 
+  TextField } from '@mui/material';
 import { useContext } from "react";
 import { Auth } from "../../context/AuthContext";
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const Login = () => {
 
@@ -13,6 +27,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const {user} = useContext(Auth);
   const [open, setOpen] = useState(false);
+  const [error, setError] = useState({open: false, msg: ""});
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,10 +38,17 @@ const Login = () => {
     event.preventDefault();
     setOpen(true);
     logInWithEmailAndPassword(email, password)
-      .then(() => {
+      .then((err) => {
         setOpen(false);
+        if (err) {
+          setError({open: true, msg: err});
+        }
       })
   }
+
+  const handleClose = () => {
+    setError({open: false, msg: ""});
+  };
   
   return (
     <form onSubmit={login}>
@@ -59,13 +81,13 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button
+          <Button
             type="submit"
-            className="login__btn"
+            variant="contained"
             disabled={!email || !password}
           >
             Login
-          </button>
+          </Button>
           <div>
             <Link to="/reset">Forgot Password</Link>
           </div>
@@ -73,6 +95,25 @@ const Login = () => {
             Don't have an account? <Link to="/register"><b>Register</b></Link> now.
           </div>
         </div>
+      </div>
+      <div>
+        <Dialog
+          open={error.open}
+          TransitionComponent={Transition}
+          keepMounted
+          onClose={handleClose}
+          aria-describedby="alert-dialog-slide-description"
+        >
+          <DialogTitle>An error ocurred</DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-slide-description">
+              {error.msg}
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Close</Button>
+          </DialogActions>
+        </Dialog>
       </div>
     </form>
   );

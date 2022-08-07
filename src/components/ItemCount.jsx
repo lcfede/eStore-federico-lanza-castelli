@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react';
-import Button from "@material-ui/core/Button";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
 import { Shop } from '../context/ShopContext';
+import { Button, ButtonGroup } from '@mui/material';
 
 export const ItemCount = ({onAdd: setQty, stock, product}) => {
 
@@ -24,7 +23,7 @@ export const ItemCount = ({onAdd: setQty, stock, product}) => {
   return (
     <div className='itemcount__cointainer'>  
         <ButtonGroup size="medium" aria-label="small outlined button group">
-            <Button 
+            <Button
                 onClick={() => addProd(-1)}
                 disabled={count === 1 ? true : false}
             >-</Button>

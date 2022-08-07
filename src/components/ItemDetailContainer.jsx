@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Box, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, LinearProgress, Slide } from '@mui/material';
-import { Button } from '@material-ui/core';
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, LinearProgress, Slide } from '@mui/material';
 import ItemDetail from './ItemDetail';
 import { useNavigate, useParams } from 'react-router-dom';
 import {getProductById} from '../services/productService';

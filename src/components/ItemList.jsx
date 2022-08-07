@@ -1,18 +1,8 @@
 import React from 'react';
 import { Item } from './Item';
-import { makeStyles } from '@material-ui/core/styles';
 import { Box, Grid, LinearProgress } from '@mui/material';
 
-const useStyles = makeStyles(theme => ({
-    root: {
-        flexGrow: 1,
-        padding: theme.spacing(10)
-    }
-}))
-
 export const ItemList = ({data, loading}) => {
-
-    const classes = useStyles();
 
     if (loading) 
       return (
@@ -26,13 +16,14 @@ export const ItemList = ({data, loading}) => {
             {
                 <div> 
                     {
-                        <div className={classes.root}>
+                        <div>
                             <Grid
                                 container
                                 spacing={3}
                                 direction="row"
                                 justify="center"
                                 alignItems="center"
+                                padding={10}
                             >
                                 {
                                     data.map((prod) => {

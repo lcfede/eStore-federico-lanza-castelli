@@ -66,12 +66,12 @@ const Reset = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <button
-          className="reset__btn"
+        <Button
+          variant="contained"
           onClick={() => resetPassword()}
         >
           Send password reset email
-        </button>
+        </Button>
         <div>
           Don't have an account? <Link to="/register"><b>Register</b></Link> now.
         </div>

@@ -1,10 +1,24 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 
 export const Shop = createContext();
 
 const ShopProvider = ({children}) => {    
 
     const [cart, setCart] = useState([]);
+
+    useEffect(() => {
+        const items = JSON.parse(localStorage.getItem('shoppingCart'));
+        if (items) {
+            setCart(items);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (cart && cart.length > 0)
+            localStorage.setItem('shoppingCart', JSON.stringify(cart));
+        else
+            localStorage.removeItem("shoppingCart");
+    }, [cart]);
     
     const addItem = (product, qty) => {
         const repeated = isInCart(product.id);
@@ -40,7 +54,7 @@ const ShopProvider = ({children}) => {
     const totalItems = () => {
         return cart.reduce(function(a, b){
             return a + b['qty'];
-        }, "");    
+        }, 0);    
     }
 
     const totalAmount = () => {

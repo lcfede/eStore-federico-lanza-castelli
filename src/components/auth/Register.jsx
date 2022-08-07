@@ -91,9 +91,11 @@ const Register = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <button className="register__btn" onClick={register}>
+            <Button
+              variant="contained"
+              onClick={register}>
               Register
-            </button>
+            </Button>
             <div>
               Already have an account? <Link to="/login"><b>Login</b></Link> now.
             </div>

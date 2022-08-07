@@ -4,6 +4,7 @@ import { Shop } from '../context/ShopContext';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { 
   Backdrop, 
+  Button, 
   CircularProgress,
   Dialog, 
   DialogActions, 
@@ -17,7 +18,6 @@ import {
   Tooltip } from '@mui/material';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
-import { Button } from '@material-ui/core';
 import { useNavigate } from "react-router-dom";
 import {saveOrder} from '../services/orderService';
 import { Auth } from '../context/AuthContext';
@@ -30,7 +30,7 @@ const Cart = () => {
   const {cart, addItem, clearItems, removeItem, subtractItem, totalAmount} = useContext(Shop);
   const [modal, setModal] = useState({open: false, isError: false, title: '', message: ''});
   const [loading, setLoading] = useState(false);
-  const {user, name} = useContext(Auth);
+  const { user } = useContext(Auth);
   const navigate = useNavigate();
 
   const handleClose = () => {
@@ -174,6 +174,7 @@ const Cart = () => {
                           name="name" 
                           label="Full name" 
                           variant="outlined"
+                          disabled={!user}
                           value={formik.values.name}
                           onChange={formik.handleChange}
                           error={formik.touched.name && Boolean(formik.errors.name)}
@@ -184,6 +185,7 @@ const Cart = () => {
                           name="phone" 
                           label="Phone" 
                           variant="outlined"
+                          disabled={!user}
                           value={formik.values.phone}
                           onChange={formik.handleChange}
                           error={formik.touched.phone && Boolean(formik.errors.phone)}
@@ -198,6 +200,7 @@ const Cart = () => {
                           name="email" 
                           label="Email" 
                           variant="outlined"
+                          disabled={!user}
                           value={formik.values.email}
                           onChange={formik.handleChange}
                           error={formik.touched.email && Boolean(formik.errors.email)}
@@ -208,6 +211,7 @@ const Cart = () => {
                           name="confirmEmail" 
                           label="Confirm email" 
                           variant="outlined"
+                          disabled={!user}
                           value={formik.values.confirmEmail}
                           onChange={formik.handleChange}
                           error={formik.touched.confirmEmail && Boolean(formik.errors.confirmEmail)}
@@ -222,6 +226,7 @@ const Cart = () => {
                           name="address" 
                           label="Full address" 
                           variant="outlined"
+                          disabled={!user}
                           value={formik.values.address}
                           onChange={formik.handleChange}
                           error={formik.touched.address && Boolean(formik.errors.address)}
@@ -229,9 +234,13 @@ const Cart = () => {
                       </div>
                     </section>
                     <section style={{marginTop: 30}}>
-                      <Button size="large" color="primary" variant="contained" fullWidth type="submit">
-                        Confirm purchase
-                      </Button>
+                      <Button
+                        size="large" 
+                        color={user ? "primary" : "secondary"} 
+                        variant="contained" 
+                        fullWidth 
+                        disabled={!user}
+                        type="submit">{user ? "Confirm purchase" : "You must login to purchase"}</Button>
                     </section>
 
                     <div>
@@ -252,12 +261,12 @@ const Cart = () => {
                           !modal.isError 
                             ? 
                               <DialogActions>
-                                <Button onClick={handleClose}>Disagree</Button>
-                                <Button onClick={() => customSubmit(formik)}>Agree</Button>
+                                <Button onClick={handleClose}> Disagree </Button>
+                                <Button onClick={() => customSubmit(formik)}> Agree </Button>
                               </DialogActions>
                             :
                               <DialogActions>
-                                <Button onClick={handleClose}>Close</Button>
+                              <Button onClick={handleClose}> Close </Button>
                               </DialogActions>
                         }
                       </Dialog>

@@ -1,4 +1,5 @@
-import { Button } from "@material-ui/core";
+import { Button } from "@mui/material";
+
 
 export const CartItem = ({ item, addItem, subtractItem }) => {
   return (
@@ -13,7 +14,7 @@ export const CartItem = ({ item, addItem, subtractItem }) => {
           <Button
             size="small"
             disableElevation
-            variant="contained"
+            variant="outlined"
             onClick={() => subtractItem(item)}
           >
             -
@@ -22,7 +23,7 @@ export const CartItem = ({ item, addItem, subtractItem }) => {
           <Button
             size="small"
             disableElevation
-            variant="contained"
+            variant="outlined"
             onClick={() => addItem(item, 1)}
           >
             +
