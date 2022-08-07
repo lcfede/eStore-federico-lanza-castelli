@@ -1,7 +1,7 @@
 # E-Store
 ## _Developed with React 18_
 
-![test](https://icon-library.com/images/react-icon/react-icon-11.jpg)
+![test](https://github.com/lcfede/eStore-federico-lanza-castelli/blob/main/public/imgs/ReactJS.png)
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
@@ -27,7 +27,7 @@ Libraries used on this project:
 - [`Formik`](https://formik.org/)  - Build forms in React, without the tears
 - [`YUP`](https://www.npmjs.com/package/yup#api)  - Add validations to your forms
 - [`SASS`](https://sass-lang.com/)  - CSS with superpowers
-- [`Animate.css`](https://animate.style/)  - Just-add-water CSS animations.
+- [`Animate.css`](https://animate.style/)  - CSS animations.
 - [`Firebase`](https://firebase.google.com/)  - Manage authentication and database API
 - [`Node JS`](https://nodejs.org/)  - Evented I/O for the backend
 
@@ -44,6 +44,9 @@ npm i
 npm start
 ```
 
+## Demo
+
+![test](https://github.com/lcfede/eStore-federico-lanza-castelli/blob/main/public/imgs/eStore.gif)
 
 
 ## Version
